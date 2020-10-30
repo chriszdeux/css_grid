@@ -14,8 +14,27 @@
       background: #23475b;
       color: white;
       padding: 32px 15px;
+      display: grid;
+      grid-template-columns: minmax(auto, 1024px);
+      justify-content: center;
+    }
+    .hero-container {
+      display: grid;
+      grid-template-columns: 70px 1fr 320px;
+      grid-template-areas:  'badge title form'
+                            '. description form'
+                            '. countdown form';
+      gap: 10px;
+    }
+
+    .badge {
+      grid-area: badge;
+    }
+    .badge img {
+      max-width: 70px;
     }
     .title {
+      grid-area: title;
       font-size: 36px;
       font-weight: normal;
       margin: 0;
@@ -24,6 +43,7 @@
     }
 
     .form {
+      grid-area: form;
       text-align: center;
       background-color: rgba(255, 255, 255, 0.9);
       padding: 1.5em;
@@ -55,32 +75,77 @@
       border-bottom: 5px solid #6d932b;
       display: inline-block;
     }
+    
+    .countdown {
+      grid-area: countdown;
+    }
+    .countdown p {
+      font-size: 20px;
+      text-align: center;
+      font-weight: 300;
+    }
+
+    .countdown span {
+      font-size: 33px;
+    }
+    .countdown span:after {
+      content: ':';
+      display: inline-block;
+      margin: 0 5px;
+    }
+
+    .countdown span:last-child::after{
+      display: none;
+    }
+    p {
+      margin: 0;
+    }
+
+    .description {
+      grid-area: description;
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero-container {
+        grid-template-columns: 70px 1fr;
+        grid-template-areas:'badge title'
+                            'description description'
+                            'form form'
+                            'countdown countdown';
+        gap: 10px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="hero">
-    <div class="badge">
-      <img src="img/badge.png" alt="">
+    <div class="hero-container">
+      <div class="badge">
+        <img src="img/badge.png" alt="">
+      </div>
+      <h1 class="title">
+        Curso de React.js
+      </h1>
+      <div class="description">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus accusantium dicta animi fugiat quae assumenda maiores rerum doloribus quisquam ex, nisi impedit, recusandae eaque error tenetur. Blanditiis sapiente adipisci consequuntur.</p>
+      </div>
+      <form action="" class="form">
+        <p>Registrate a platzi</p>
+        <input type="text" placeholder="Nombre">
+        <input type="email" placeholder="email@">
+        <button type="submit">Comienza ahora</button>
+      </form>
+      <div class="countdown">
+        <p>lanzamiento: </p>
+          <p>
+            <span>01d</span>
+            <span>03h</span>
+            <span>09m</span>
+            <span>05s</span>
+          </p>
+      </div>
     </div>
-    <h1 class="title">
-      Curso de React.js
-    </h1>
-    <div class="description">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus accusantium dicta animi fugiat quae assumenda maiores rerum doloribus quisquam ex, nisi impedit, recusandae eaque error tenetur. Blanditiis sapiente adipisci consequuntur.</p>
-    </div>
-    <form action="" class="form">
-      <p>Registrate a platzi</p>
-      <input type="text" placeholder="Nombre">
-      <input type="email" placeholder="email@">
-      <button type="submit">Comienza ahora</button>
-    </form>
-    <div class="countdown">
-      <p>lanzamiento: </p>
-        <span>01d</span>
-        <span>03h</span>
-        <span>09m</span>
-        <span>05s</span>
-    </div>
+    
   </div>
 </body>
 </html>
